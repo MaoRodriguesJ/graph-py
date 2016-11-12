@@ -20,7 +20,6 @@ class Graph(object):
                 if vertex in self.dict[vertexes]:
                     self.dict[vertexes].remove(vertex)
 
-
     def connect(self, v1, v2):
         """ Conecta dois vértices do grafo """
         if v1 in self.dict and v2 in self.dict:
