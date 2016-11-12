@@ -15,10 +15,10 @@ class Graph(object):
     def remove_vertex(self, vertex):
         """ Remove o vértice "vertex" do grafo, e as conexões que o envolvam """
         if vertex in self.dict:
-            del self.dict[vertex]
             for vertexes in self.dict:
                 if vertex in self.dict[vertexes]:
                     self.dict[vertexes].remove(vertex)
+            del self.dict[vertex]
 
     def connect(self, v1, v2):
         """ Conecta dois vértices do grafo """
@@ -63,7 +63,7 @@ class Graph(object):
     def is_complete(self):
         """ Verifica se o grafo é completo """
         for vertexes in self.dict:
-            if (self.dict[vertexes].union([vertex])) != set(self.dict.keys()):
+            if (self.dict[vertexes].union([vertexes])) != set(self.dict.keys()):
                 return False
         return True
 
