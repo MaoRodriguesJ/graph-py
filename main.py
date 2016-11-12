@@ -1,5 +1,11 @@
 from graph import Graph
 
+def deep_first_search(Graph, start, visited=set()):
+    visited.add(start)
+    for next in (set(Graph.get_vertexes()) - visited):
+        deep_first_search(Graph, next, visited)
+    return visited
+
 x1 = set(["x2","x3","x8"])
 x2 = set(["x1"])
 x3 = set(["x1"])
@@ -9,8 +15,14 @@ x6 = set(["x5"])
 x7 = set(["x5"])
 x8 = set(["x1","x4","x5"])
 
-dictonary = {"x1":x1, "x2":x2, "x3":x3, "x4":x4, 
-			 "x5":x5, "x6":x6, "x7":x7, "x8":x8}
+dictonary = {"x1":set(["x2","x3","x8"]),
+			 "x2":set(["x1"]),
+			 "x3":set(["x1"]),
+			 "x4":set(["x8"]), 
+			 "x5":set(["x6","x7","x8"]),
+			 "x6":set(["x5"]),
+			 "x7":set(["x5"]),
+			 "x8":set(["x1","x4","x5"])}
 
 g = Graph(dictonary)
 
@@ -50,3 +62,7 @@ print("Grafo Árvore =", g.is_tree())
 g.remove_vertex("x9")
 
 print("Fecho transitivo do vertice x5 (após remover x9)=", g.get_transitive_closure("x5"))
+
+visited = set()
+print(deep_first_search(g, "x1", visited))
+
