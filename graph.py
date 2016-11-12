@@ -80,7 +80,7 @@ class Graph(object):
     def is_connected(self):
         """ Verifica se o grafo é conexo """
         set_aux = self.get_transitive_closure(self.get_random_vertex())
-        if set_aux == set(self.dict.keys())
+        if set_aux == set(self.dict.keys()):
             return True
         return False
 
