@@ -1,7 +1,7 @@
 import random
 
 
-class Grafo(object):
+class Graph(object):
 
 	def __init__ (self, dict={}):
 		""" Inicializa os vértices do grafo """
