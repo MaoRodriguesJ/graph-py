@@ -15,16 +15,17 @@ class Graph(object):
     def remove_vertex(self, vertex):
         """ Remove o vértice "vertex" do grafo, e as conexões que o envolvam """
         if vertex in self.dict:
+            del self.dict[vertex]
             for vertexes in self.dict:
                 if vertex in self.dict[vertexes]:
                     self.dict[vertexes].remove(vertex)
-            del self.dict[vertex]
+
 
     def connect(self, v1, v2):
         """ Conecta dois vértices do grafo """
         if v1 in self.dict and v2 in self.dict:
             self.dict[v1].add(v2)
-            self.dict[v2].add(v1)
+            self.dict[v2].add(  v1)
 
     def disconnect(self, v1, v2):
         """ Desconecta dois vértices do grafo """
@@ -67,16 +68,19 @@ class Graph(object):
                 return False
         return True
 
-    def get_transitive_closure(self, vertex, transitive_clousure=set()):
+    def get_transitive_closure(self, vertex):
         """ Retorna o fecho transitivo de um determinado vértice "vertex" """
-        transitive_clousure.add(vertex)
-
-        for vertexes in self.get_adjacents(vertex):
-            if vertexes not in transitive_clousure:
-                transitive_clousure = self.get_transitive_closure(vertexes, transitive_clousure)
-
-        return transitive_clousure
+        new_set = set()
+        return self.search_transitive_closure(vertex, new_set)
     
+    def search_transitive_closure(self, v, visited):
+        """ Procura o fecho transitivo de um determinado vértice "v" """
+        visited.add(v)
+        for v_adj in self.get_adjacents(v):
+            if v_adj not in visited:
+                self.search_transitive_closure(v_adj, visited)
+        return visited
+
     def is_connected(self):
         """ Verifica se o grafo é conexo """
         set_aux = self.get_transitive_closure(self.get_random_vertex())
@@ -87,16 +91,17 @@ class Graph(object):
     def is_tree(self):
         """ Verifica se o grafo é uma árvore """
         v = self.get_random_vertex()
-        return self.is_connected() and not(self.detect_cycle(v, v))
+        new_set = set()
+        return (self.is_connected()) and (not(self.detect_cycle(v, v, new_set)))
 
-    def detect_cycle(v, v_before, visited=set()):
+    def detect_cycle(self, v, v_before, visited):
         """ Verifica se o vértice "v" faz parte de algum ciclo """
         if v in visited:
             return True
         visited.add(v)
         for v_adj in self.get_adjacents(v):
             if v_adj != v_before:
-                if detect_cycle(v_adj, v, visited):
+                if self.detect_cycle(v_adj, v, visited):
                     return True
-        visited.discard(v)
+        visited.remove(v)
         return False
