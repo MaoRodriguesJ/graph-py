@@ -37,16 +37,20 @@ print("Vértices adjacentes a x5 =", g.get_adjacents("x5"))
 
 print("Fecho transitivo do vertice x5 =", g.get_transitive_closure("x5"))
 g.add_vertex("x9")
-print("Fecho transitivo do vertice x5 (após adicionar x9)=", g.get_transitive_closure("x5"))
+print("Fecho transitivo do vertice x5 (após adicionar x9)=",
+	  g.get_transitive_closure("x5"))
 print("Grafo Árvore =", g.is_tree())
 
 g.connect("x5", "x9")
-print("Fecho transitivo do vertice x5 (após conectar a x9)=", g.get_transitive_closure("x5"))
+print("Fecho transitivo do vertice x5 (após conectar a x9)=",
+	  g.get_transitive_closure("x5"))
+
 print("Grafo Árvore =", g.is_tree())
 
 g.remove_vertex("x9")
 
-print("Fecho transitivo do vertice x5 (após remover x9)=", g.get_transitive_closure("x5"))
+print("Fecho transitivo do vertice x5 (após remover x9)=",
+	  g.get_transitive_closure("x5"))
 
 print("Busca em profundidade:")
 g.depth_first_search("x8")
