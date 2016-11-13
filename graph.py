@@ -106,6 +106,7 @@ class Graph(object):
         return False
 
     def depth_first_search(self, vertex, visited=set()):
+        """ Algoritmo de busca em profundidade """
         visited.add(vertex)
         print("Visitando :",vertex)
         for v_adj in (self.get_adjacents(vertex) - visited):
