@@ -3,9 +3,12 @@ import random
 
 class Graph(object):
 
-    def __init__ (self, dict={}):
+    def __init__ (self, dict=None):
         """ Inicializa os vértices do grafo """
-        self.dict = dict
+        if dict == None:
+            self.dict = {}
+        else:
+            self.dict = dict
 
     def add_vertex(self, vertex):
         """ Adiciona o vértice "vertex" no grafo, caso ele não exista """
