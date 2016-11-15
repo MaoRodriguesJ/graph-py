@@ -108,8 +108,11 @@ class Graph(object):
         visited.remove(v)
         return False
 
-    def depth_first_search(self, vertex, visited=set()):
+    def depth_first_search(self, vertex, visited=None):
         """ Algoritmo de busca em profundidade """
+        if visited == None:
+            visited = set()
+            
         visited.add(vertex)
         print("Visitando :",vertex)
         for v_adj in (self.get_adjacents(vertex) - visited):
