@@ -1,2 +1,1 @@
-# INE5413
-Graph structure implementation and some common algorithms.
+Graph structure implementation for INE5413-UFSC lecture and some common algorithms.
